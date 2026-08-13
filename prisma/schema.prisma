@@ -12,4 +12,22 @@ model User {
   email        String   @unique
   passwordHash String
   createdAt    DateTime @default(now())
+
+  // Relation field
+  properties   Property[]
+}
+
+model Property {
+  id          Int      @id @default(autoincrement())
+  title1       String
+  description String
+  price       Float
+  category    String
+  location    String
+  createdAt   DateTime @default(now())
+
+  // Relation fields
+  userId      Int
+  owner       User     @relation(fields: [userId], references: [id])
+
 }
