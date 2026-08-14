@@ -14,6 +14,10 @@ app.get('/', (req, res) => {
 const authRoutes = require('./src/routes/authRoutes');
 app.use('/api/auth', authRoutes);
 
+// Auth routes connect karna
+const propertyRoutes = require('./src/routes/propertyRoutes');
+app.use('/api/properties', propertyRoutes);
+
 app.listen(5000, () => {
   console.log('Server started on http://localhost:5000');
 });

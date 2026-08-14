@@ -1,7 +1,12 @@
-### Signup Test
-POST http://localhost:5000/api/auth/signup
+### Create Property Test
+POST http://localhost:5000/api/properties
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ2aXZla0B0ZXN0LmNvbSIsImlhdCI6MTc4NjY5NTc2MywiZXhwIjoxNzg3MzAwNTYzfQ.o19Vp4HIYCcO9Tc3XNIXRxb6WSPSwieQHJwObHx0k1E
 
 {
-
+  "title": "3BHK Flat in Vijay Nagar",
+  "description": "Spacious flat with parking",
+  "price": 5000000,
+  "category": "Residential",
+  "location": "Indore"
 }
