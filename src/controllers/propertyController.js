@@ -61,4 +61,58 @@ async function createProperty(req, res) {
   }
 }
 
-module.exports = { getAllProperties, getPropertyById, createProperty };
+
+// PUT /api/properties/:id - property update karna (protected, owner-only)
+async function updateProperty(req, res) {
+  try {
+    const { id } = req.params;
+
+    const property = await prisma.property.findUnique({ where: { id: Number(id) } });
+
+    if (!property) {
+      return res.status(404).json({ error: 'Property not found' });
+    }
+
+    if (property.userId !== req.user.id) {
+      return res.status(403).json({ error: 'You are not authorized to update this property' });
+    }
+
+    const { title, description, price, category, location } = req.body;
+
+    const updated = await prisma.property.update({
+      where: { id: Number(id) },
+      data: { title, description, price: Number(price), category, location },
+    });
+
+    res.json(updated);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+}
+
+// DELETE /api/properties/:id - property delete karna (protected, owner-only)
+async function deleteProperty(req, res) {
+  try {
+    const { id } = req.params;
+
+    const property = await prisma.property.findUnique({ where: { id: Number(id) } });
+
+    if (!property) {
+      return res.status(404).json({ error: 'Property not found' });
+    }
+
+    if (property.userId !== req.user.id) {
+      return res.status(403).json({ error: 'You are not authorized to delete this property' });
+    }
+
+    await prisma.property.delete({ where: { id: Number(id) } });
+
+    res.json({ message: 'Property deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+}
+
+module.exports = { getAllProperties, getPropertyById, createProperty, updateProperty, deleteProperty };

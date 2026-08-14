@@ -1,12 +1,12 @@
-### Create Property Test
-POST http://localhost:5000/api/properties
+### Update Property Test
+PUT http://localhost:5000/api/properties/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ2aXZla0B0ZXN0LmNvbSIsImlhdCI6MTc4NjY5NTc2MywiZXhwIjoxNzg3MzAwNTYzfQ.o19Vp4HIYCcO9Tc3XNIXRxb6WSPSwieQHJwObHx0k1E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ2aXZla0B0ZXN0LmNvbSIsImlhdCI6MTc4NjcyMDMzNCwiZXhwIjoxNzg3MzI1MTM0fQ.0T3ncYnrStr3pdmZ1W2Yq_gMBKKzZI3RcIPj3dB4k0I
 
 {
-  "title": "3BHK Flat in Vijay Nagar",
-  "description": "Spacious flat with parking",
-  "price": 5000000,
+  "title": "3BHK Flat in Vijay Nagar - Updated",
+  "description": "Spacious flat with parking, newly renovated",
+  "price": 5500000,
   "category": "Residential",
   "location": "Indore"
 }
