@@ -2,8 +2,9 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
-
+const cors = require('cors');
 // JSON body parse karne ke liye (zaroori hai req.body use karne ke liye)
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
