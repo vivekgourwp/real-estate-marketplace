@@ -6,3 +6,12 @@ export async function getAllProperties() {
   const response = await axios.get(API_URL)
   return response.data
 }
+
+
+export async function createProperty(propertyData) {
+  const token = localStorage.getItem('token')
+  const response = await axios.post(API_URL, propertyData, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+  return response.data
+}
