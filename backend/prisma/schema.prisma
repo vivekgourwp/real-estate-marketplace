@@ -24,6 +24,7 @@ model Property {
   price       Float
   category    String
   location    String
+  imageUrl    String?
   createdAt   DateTime @default(now())
 
   // Relation fields

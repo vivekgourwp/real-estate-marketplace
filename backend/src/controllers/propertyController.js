@@ -50,6 +50,7 @@ async function createProperty(req, res) {
         price: Number(price),
         category,
         location,
+        imageUrl: req.file ? `/uploads/${req.file.filename}` : null,
         userId: req.user.id, // middleware se aaya (verifyToken ne set kiya tha)
       },
     });

@@ -10,8 +10,22 @@ export async function getAllProperties() {
 
 export async function createProperty(propertyData) {
   const token = localStorage.getItem('token')
-  const response = await axios.post(API_URL, propertyData, {
-    headers: { Authorization: `Bearer ${token}` },
+
+  const formData = new FormData()
+  formData.append('title', propertyData.title)
+  formData.append('description', propertyData.description)
+  formData.append('price', propertyData.price)
+  formData.append('category', propertyData.category)
+  formData.append('location', propertyData.location)
+  if (propertyData.image) {
+    formData.append('image', propertyData.image)
+  }
+
+  const response = await axios.post(API_URL, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
   })
   return response.data
 }
