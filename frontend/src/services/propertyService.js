@@ -15,3 +15,9 @@ export async function createProperty(propertyData) {
   })
   return response.data
 }
+
+
+export async function getPropertyById(id) {
+  const response = await axios.get(`${API_URL}/${id}`)
+  return response.data
+}

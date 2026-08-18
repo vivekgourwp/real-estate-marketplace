@@ -5,6 +5,7 @@ import SignupPage from './pages/SignupPage'
 import Navbar from './components/Navbar'
 import AddPropertyPage from './pages/AddPropertyPage'
 import ProtectedRoute from './components/ProtectedRoute'
+import PropertyDetailPage from './pages/PropertyDetailPage'
 function App() {
   return (
     <BrowserRouter>
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/property/:id" element={<PropertyDetailPage />} />
         <Route
           path="/add-property"
           element={
