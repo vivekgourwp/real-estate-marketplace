@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createProperty } from '../services/propertyService'
+import { formStyles as styles } from '../formStyles'
 
 function AddPropertyPage() {
   const [title, setTitle] = useState('')
@@ -14,7 +15,6 @@ function AddPropertyPage() {
   async function handleSubmit(e) {
     e.preventDefault()
     setError('')
-
     try {
       await createProperty({ title, description, price, category, location })
       navigate('/')
@@ -24,30 +24,13 @@ function AddPropertyPage() {
   }
 
   return (
-    <div>
-      <h1>Add Property</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <br />
-        <textarea
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <br />
-        <input
-          type="number"
-          placeholder="Price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-        <br />
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+    <div style={styles.container}>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <h1 style={styles.heading}>Add Property</h1>
+        <input style={styles.input} type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <textarea style={styles.textarea} placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+        <input style={styles.input} type="number" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
+        <select style={styles.input} value={category} onChange={(e) => setCategory(e.target.value)}>
           <option value="Residential">Residential</option>
           <option value="Commercial">Commercial</option>
           <option value="Plot/Land">Plot/Land</option>
@@ -55,17 +38,10 @@ function AddPropertyPage() {
           <option value="Rental">Rental</option>
           <option value="Luxury">Luxury</option>
         </select>
-        <br />
-        <input
-          type="text"
-          placeholder="Location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
-        <br />
-        <button type="submit">Add Property</button>
+        <input style={styles.input} type="text" placeholder="Location" value={location} onChange={(e) => setLocation(e.target.value)} />
+        <button style={styles.button} type="submit">Add Property</button>
+        {error && <p style={styles.error}>{error}</p>}
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   )
 }
