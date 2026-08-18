@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { getPropertyById, deleteProperty } from '../services/propertyService'
+import Loader from '../components/Loader'
 
 function PropertyDetailPage() {
   const { id } = useParams()
@@ -21,8 +22,7 @@ function PropertyDetailPage() {
     }
   }
 
-  if (!property) return <p style={{ padding: '32px' }}>Loading...</p>
-
+if (!property) return <Loader />
   return (
     <div style={styles.container}>
       <div style={styles.card}>
