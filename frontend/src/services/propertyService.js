@@ -21,3 +21,21 @@ export async function getPropertyById(id) {
   const response = await axios.get(`${API_URL}/${id}`)
   return response.data
 }
+
+
+
+export async function updateProperty(id, propertyData) {
+  const token = localStorage.getItem('token')
+  const response = await axios.put(`${API_URL}/${id}`, propertyData, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+  return response.data
+}
+
+export async function deleteProperty(id) {
+  const token = localStorage.getItem('token')
+  const response = await axios.delete(`${API_URL}/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+  return response.data
+}

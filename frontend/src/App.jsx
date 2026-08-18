@@ -6,6 +6,9 @@ import Navbar from './components/Navbar'
 import AddPropertyPage from './pages/AddPropertyPage'
 import ProtectedRoute from './components/ProtectedRoute'
 import PropertyDetailPage from './pages/PropertyDetailPage'
+import EditPropertyPage from './pages/EditPropertyPage'
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +23,14 @@ function App() {
           element={
             <ProtectedRoute>
               <AddPropertyPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/edit-property/:id"
+          element={
+            <ProtectedRoute>
+              <EditPropertyPage />
             </ProtectedRoute>
           }
         />
